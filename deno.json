@@ -3,7 +3,10 @@
   "description": "std-serve",
   "version": "0.0.1",
   "license": "MIT",
-  "exports": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./json": "./src/json.ts"
+  },
   "tasks": {
     "dev": "deno run --watch src/__tests__/terminal.ts",
     "build:npm": "deno run -A scripts/build-npm.ts",
