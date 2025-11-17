@@ -1,11 +1,12 @@
 import type { z } from "zod";
 
-import type { CanBePromise, Cond } from "./handlers.ts";
+import type { CanBePromise } from "./types.ts";
+import type { Cond } from "./handlers.ts";
 
 export function json(
   ...conds: Cond[]
 ): Cond<string | undefined> {
-  return async (msg: string) => {
+  return (msg: string) => {
     try {
       const parsed = JSON.parse(msg);
       return [
@@ -36,7 +37,7 @@ export function json(
         },
       ];
     } catch {
-      return [async () => false, async () => undefined];
+      return [() => false, () => undefined];
     }
   };
 }
@@ -45,7 +46,7 @@ export function is<S = unknown>(
   checker: (msg: S) => CanBePromise<boolean>,
   then: (msg: S) => CanBePromise<unknown>,
 ): Cond {
-  return async (msg: unknown) => [
+  return (msg: unknown) => [
     async () => await checker(msg as S),
     async () => await then(msg as S),
   ];

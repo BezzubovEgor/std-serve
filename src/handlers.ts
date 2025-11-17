@@ -1,4 +1,4 @@
-export type CanBePromise<T> = T | Promise<T>;
+import type { CanBePromise, Handler } from "./types.ts";
 
 export type Cond<Returns = unknown> = (msg: string) => CanBePromise<[
   () => CanBePromise<boolean>,
@@ -7,7 +7,7 @@ export type Cond<Returns = unknown> = (msg: string) => CanBePromise<[
 
 export function on(
   ...conds: Cond<string | undefined>[]
-) {
+): Handler {
   return async (msg: string) => {
     try {
       for (const cond of conds) {

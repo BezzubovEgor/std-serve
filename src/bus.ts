@@ -1,9 +1,11 @@
 import * as readline from "node:readline";
 import * as process from "node:process";
 
+import type { Handler } from "./types.ts";
+
 export function stdServe(
-  handler: (msg: string) => Promise<string | undefined>,
-) {
+  handler: Handler,
+): void {
   const rl = readline.createInterface({
     input: process.stdin,
     crlfDelay: Infinity,
