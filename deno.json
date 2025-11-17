@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "license": "MIT",
   "exports": {
-    ".": "./src/index.ts",
-    "./json": "./src/json.ts"
+    "./json": "./src/json.ts",
+    ".": "./src/index.ts"
   },
   "tasks": {
     "dev": "deno run --watch src/__tests__/terminal.ts",
