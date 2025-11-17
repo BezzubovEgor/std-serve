@@ -23,10 +23,10 @@ await build({
     private: false,
     repository: {
       type: "git",
-      url: "git+https://github.com/BezzubovEgor/postmessage-transfer.git",
+      url: "git+https://github.com/BezzubovEgor/std-serve.git",
     },
     bugs: {
-      url: "https://github.com/BezzubovEgor/postmessage-transfer/issues",
+      url: "https://github.com/BezzubovEgor/std-serve/issues",
     },
   },
   postBuild() {
