@@ -1,0 +1,23 @@
+{
+  "name": "std-serve",
+  "description": "std-serve",
+  "version": "0.0.1",
+  "license": "MIT",
+  "exports": "./src/index.ts",
+  "tasks": {
+    "dev": "deno run --watch src/__tests__/terminal.ts",
+    "build:npm": "deno run -A scripts/build-npm.ts",
+    "publish:npm": "deno run build:npm && cd npm && npm publish --dry-run"
+  },
+  "compilerOptions": {
+    "types": [
+      "deno.ns",
+      "npm:@types/node"
+    ]
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1",
+    "@deno/dnt": "jsr:@deno/dnt@^0.41.3",
+    "zod": "npm:zod@^4.1.12"
+  }
+}
