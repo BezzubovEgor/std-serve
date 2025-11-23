@@ -2,7 +2,7 @@
 
 A Deno library for building powerful command-line applications that communicate over standard input and output using a request-response model. It is also fully compatible and suitable for Node.js projects, thanks to its build process.
 
-[![Codecov](https://codecov.io/gh/ybezz/std-serve/branch/main/graph/badge.svg)](https://codecov.io/gh/ybezz/std-serve)
+[![codecov](https://codecov.io/github/BezzubovEgor/std-serve/graph/badge.svg?token=5M5x9FFgTm)](https://codecov.io/github/BezzubovEgor/std-serve)
 
 ## Overview
 
