@@ -10,8 +10,8 @@
 
 A Deno library for building powerful command-line applications that communicate over standard input and output using a request-response model. It is also fully compatible and suitable for Node.js projects, thanks to its build process.
 
-| [![codecov](https://codecov.io/github/BezzubovEgor/std-serve/graph/badge.svg?token=5M5x9FFgTm)](https://codecov.io/github/BezzubovEgor/std-serve) | [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) |
-|---|---|
+| [![codecov](https://codecov.io/github/BezzubovEgor/std-serve/graph/badge.svg?token=5M5x9FFgTm)](https://codecov.io/github/BezzubovEgor/std-serve) | [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) | [![jsr-version](https://jsr.io/badges/@ybezz/std-serve)](https://jsr.io/@ybezz/std-serve) | [![npm-version](https://img.shields.io/npm/v/@ybezz/std-serve)](https://www.npmjs.com/package/@ybezz/std-serve) |
+|---|---|---|---|
 
 ## Overview
 
