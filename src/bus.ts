@@ -2,6 +2,7 @@ import * as readline from "node:readline";
 import * as process from "node:process";
 
 import type { Handler } from "./types.ts";
+import { StdServeError } from "./error.ts";
 
 export function stdServe(
   handler: Handler,
@@ -26,7 +27,9 @@ export function stdServe(
 
   rl.on("line", (text) => {
     handleLine(text).catch((err) => {
-      const error = err instanceof Error ? err : new Error("Unknown error");
+      const error = err instanceof Error
+        ? err
+        : new StdServeError("Unknown error", { details: err });
       output.write(
         JSON.stringify({ type: "error", payload: error.message }) + "\n",
       );

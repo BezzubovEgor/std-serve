@@ -8,7 +8,7 @@
     ".": "./src/index.ts"
   },
   "tasks": {
-    "dev": "deno run --watch src/__tests__/terminal.ts",
+    "dev": "deno run --watch examples/terminal.ts",
     "build:npm": "deno run -A scripts/build-npm.ts",
     "publish:npm": "deno run build:npm && cd npm && npm publish --dry-run"
   },

@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-import { stdServe } from "../index.ts";
-import { on } from "../handlers.ts";
-import { json, match } from "../json.ts";
+import { stdServe } from "../src/index.ts";
+import { on } from "../src/handlers.ts";
+import { json, match } from "../src/json.ts";
 
 const EchoSchema = z.object({
   type: z.literal("echo"),
