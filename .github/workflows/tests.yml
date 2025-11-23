@@ -20,18 +20,15 @@ jobs:
       - name: Run Deno tests with coverage
         run: deno test --coverage=coverage --allow-read --allow-net --allow-env --allow-run
 
-      - name: Install deno_lcov
-        run: deno install -q -A --unstable https://deno.land/x/deno_lcov/mod.ts
-
-      - name: Convert Deno coverage to LCOV
-        run: deno_lcov > coverage.lcov
+      - name: Convert coverage to lcov
+        run: deno coverage --lcov --output=coverage/coverage.lcov coverage/
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: BezzubovEgor/std-serve
-          files: ./coverage.lcov
+          files: ./coverage/coverage.lcov
           flags: unittests
           name: codecov-umbrella
           fail_ci_if_error: true

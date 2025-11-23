@@ -41,6 +41,7 @@ Untitled*.ipynb
 /.ms-playwright
 
 /npm
+/coverage
 
 GEMINI.md
 AGENTS.md
