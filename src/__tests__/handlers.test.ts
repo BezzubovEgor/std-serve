@@ -1,8 +1,6 @@
 import { assertEquals } from "@std/assert";
 
 import { on } from "../handlers.ts";
-import { json, match } from "../json.ts";
-import { z } from "zod";
 
 Deno.test("on should execute the first matching condition", async () => {
   const handler = on(
@@ -49,4 +47,3 @@ Deno.test("on should skip condition if it throws an error", async () => {
   const response = await handler("foo");
   assertEquals(response, "bar");
 });
-
