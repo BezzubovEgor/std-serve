@@ -5,14 +5,17 @@ on: [push, pull_request]
 jobs:
   test-and-coverage:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write # Needed for auth with Deno Deploy
+      contents: read # Needed to clone the repository
     steps:
-      - name: Checkout repository
+      - name: Clone repository
         uses: actions/checkout@v4
 
       - name: Setup Deno
-        uses: denoland/setup-deno@v1
+        uses: denoland/setup-deno@v2
         with:
-          deno-version: v1.x.x
+          deno-version: v2.x
 
       - name: Run Deno tests with coverage
         run: deno test --coverage=coverage --allow-read --allow-net --allow-env --allow-run
