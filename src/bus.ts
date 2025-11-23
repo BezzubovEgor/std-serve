@@ -5,24 +5,35 @@ import type { Handler } from "./types.ts";
 
 export function stdServe(
   handler: Handler,
-): void {
+  options?: {
+    input?: NodeJS.ReadableStream;
+    output?: NodeJS.WritableStream;
+  },
+): { close: () => void } {
+  const { input = process.stdin, output = process.stdout } = options ?? {};
   const rl = readline.createInterface({
-    input: process.stdin,
+    input,
     crlfDelay: Infinity,
   });
 
-  rl.on("line", async (text: string) => {
+  const handleLine = async (text: string) => {
     if (!text) return;
 
-    try {
-      const response = await handler(text);
-      if (response === undefined) return;
-      process.stdout.write(response + "\n");
-    } catch (err) {
+    const response = await handler(text);
+    if (response === undefined) return;
+    output.write(response + "\n");
+  };
+
+  rl.on("line", (text) => {
+    handleLine(text).catch((err) => {
       const error = err instanceof Error ? err : new Error("Unknown error");
-      process.stdout.write(
+      output.write(
         JSON.stringify({ type: "error", payload: error.message }) + "\n",
       );
-    }
+    });
   });
+
+  return {
+    close: () => rl.close(),
+  };
 }

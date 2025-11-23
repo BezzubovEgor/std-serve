@@ -14,7 +14,7 @@ const HelloSchema = z.object({
   payload: z.object({ name: z.string() }),
 });
 
-await stdServe(
+stdServe(
   on(
     json(
       match(EchoSchema, () => ({ type: "echo", payload: "echo" })),
@@ -36,5 +36,4 @@ await stdServe(
 );
 
 // {"type":"echo", "payload": "xxx"}
-// {"type":"message:req", "payload": {"type":"echo", "payload": "xxx"}}
-// {"type":"message:req", "payload": {"type":"hello", "payload": {"name": "World"}}}
+// {"type":"hello", "payload": {"name": "World"}}
