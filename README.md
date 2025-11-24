@@ -8,14 +8,14 @@
 ```
 # @ybezz/std-serve
 
-`@ybezz/std-serve` is a powerful and lightweight library for building modern, interactive command-line applications. It leverages a request-response model over standard I/O, making it easy to create composable and maintainable CLI tools. Whether you're working in a Deno or Node.js environment, this library provides a seamless experience for developing sophisticated CLI applications.
+`@ybezz/std-serve` is a powerful and lightweight library for building modern, interactive stdio servers. It leverages a request-response model over standard I/O, making it easy to create composable and maintainable tools that can interact with other processes. Whether you're working in a Deno or Node.js environment, this library provides a seamless experience for developing sophisticated stdio applications.
 
 | [![codecov](https://codecov.io/github/BezzubovEgor/std-serve/graph/badge.svg?token=5M5x9FFgTm)](https://codecov.io/github/BezzubovEgor/std-serve) | [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) | [![jsr-version](https://jsr.io/badges/@ybezz/std-serve)](https://jsr.io/@ybezz/std-serve) | [![npm-version](https://img.shields.io/npm/v/@ybezz/std-serve)](https://www.npmjs.com/package/@ybezz/std-serve) |
 |---|---|---|---|
 
 ## Overview
 
-`@ybezz/std-serve` simplifies the creation of interactive CLI tools. It allows you to define handlers that process line-delimited messages from `stdin` and send back responses to `stdout`. This approach is ideal for building composable CLI components that can be easily integrated with other processes or scripts, whether you are in a Deno or Node.js environment.
+`@ybezz/std-serve` simplifies the creation of stdio servers that communicate over a request-response pattern. It allows you to define handlers that process line-delimited messages from `stdin` and send back responses to `stdout`. This approach is ideal for building composable tools that can be easily integrated with other processes or scripts, whether you are in a Deno or Node.js environment.
 
 ## Features
 
