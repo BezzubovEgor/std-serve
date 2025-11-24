@@ -1,8 +1,7 @@
 import { z } from "zod";
-
-import { stdServe } from "../src/index.ts";
-import { on } from "../src/handlers.ts";
+import { stdServe, App } from "../src/index.ts";
 import { json, match } from "../src/json.ts";
+import { on } from "../src/handlers.ts";
 
 const EchoSchema = z.object({
   type: z.literal("echo"),
@@ -14,8 +13,24 @@ const HelloSchema = z.object({
   payload: z.object({ name: z.string() }),
 });
 
+const app = new App();
+
+// Global middleware to log requests
+app.use(async (req, next) => {
+  console.log(`Received request: ${req}`);
+  return await next();
+});
+
 stdServe(
-  on(
+  app.on(
+    // Handler-specific middleware to measure execution time
+    async (req, next) => {
+      const start = Date.now();
+      const res = await next();
+      const duration = Date.now() - start;
+      console.log(`Request took ${duration}ms`);
+      return res;
+    },
     json(
       match(EchoSchema, () => ({ type: "echo", payload: "echo" })),
       match(

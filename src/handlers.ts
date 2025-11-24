@@ -1,26 +1,26 @@
-import type { CanBePromise, Handler } from "./types.ts";
+import type { CanBePromise, Handler, Response } from "./types.ts";
 
-export type Cond<Returns = unknown> = (msg: string) => CanBePromise<[
+export type Cond<Req = any, Res = Response> = (req: Req) => CanBePromise<[
   () => CanBePromise<boolean>,
-  () => CanBePromise<Returns>,
+  () => CanBePromise<Res>,
 ]>;
 
-export function on(
-  ...conds: Cond<string | undefined>[]
-): Handler {
-  return async (msg: string) => {
+export function on<Req, Res extends Response>(
+  ...conds: Cond<Req, Res>[]
+): Handler<Req, Res> {
+  return async (req) => {
     try {
       for (const cond of conds) {
         try {
-          const [matches, then] = await cond(msg);
+          const [matches, then] = await cond(req);
           if (await matches()) return await then();
         } catch {
           // Skip condition if it fails
         }
       }
-      return JSON.stringify({ type: "error", payload: "not handled!" });
+      return JSON.stringify({ type: "error", payload: "not handled!" }) as Res;
     } catch {
-      return undefined;
+      return undefined as Res;
     }
   };
 }
