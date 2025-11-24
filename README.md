@@ -35,7 +35,13 @@
 
 #### Deno
 
-The library is available on JSR and can be imported directly into your Deno projects:
+To add the library to your `deno.json`, run:
+
+```bash
+deno add @ybezz/std-serve
+```
+
+You can then import it in your project:
 
 ```typescript
 import { stdServe, on, json, is } from "jsr:@ybezz/std-serve";
@@ -46,7 +52,15 @@ import { stdServe, on, json, is } from "jsr:@ybezz/std-serve";
 
 #### Node.js
 
-For Node.js projects, the library is available on NPM:
+For Node.js projects, you can use either JSR or NPM.
+
+**Using JSR:**
+
+```bash
+npx jsr add @ybezz/std-serve
+```
+
+**Using NPM:**
 
 ```bash
 npm install @ybezz/std-serve
