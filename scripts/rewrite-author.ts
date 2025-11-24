@@ -3,13 +3,15 @@
 /**
  * Rewrites commit authors in the current branch to match git config user
  * Usage: deno run --allow-run --allow-env scripts/rewrite-author.ts [base-branch] [author]
- * 
+ *
  * Arguments:
  *   base-branch  Base branch to rebase from (default: auto-detect origin/main, origin/master, or main)
  *   author       Author in format "Name <email>" (default: from git config)
  */
 
-async function exec(cmd: string[]): Promise<{ stdout: string; stderr: string; code: number }> {
+async function exec(
+  cmd: string[],
+): Promise<{ stdout: string; stderr: string; code: number }> {
   const command = new Deno.Command(cmd[0], {
     args: cmd.slice(1),
     stdout: "piped",
@@ -28,9 +30,16 @@ async function main() {
   const [baseBranchArg, authorArg] = Deno.args;
 
   // Get current branch
-  const currentBranch = await exec(["git", "rev-parse", "--abbrev-ref", "HEAD"]);
+  const currentBranch = await exec([
+    "git",
+    "rev-parse",
+    "--abbrev-ref",
+    "HEAD",
+  ]);
   if (currentBranch.code !== 0) {
-    console.error("Error: Not in a git repository or unable to determine current branch");
+    console.error(
+      "Error: Not in a git repository or unable to determine current branch",
+    );
     Deno.exit(1);
   }
 
@@ -62,7 +71,12 @@ async function main() {
   let baseBranch: string;
   if (baseBranchArg) {
     baseBranch = baseBranchArg;
-    const checkBranch = await exec(["git", "rev-parse", "--verify", baseBranch]);
+    const checkBranch = await exec([
+      "git",
+      "rev-parse",
+      "--verify",
+      baseBranch,
+    ]);
     if (checkBranch.code !== 0) {
       console.error(`Error: Branch '${baseBranch}' does not exist`);
       Deno.exit(1);
@@ -71,13 +85,30 @@ async function main() {
   } else {
     // Get base branch (try origin/main, origin/master, or main)
     baseBranch = "origin/main";
-    const checkMain = await exec(["git", "rev-parse", "--verify", "origin/main"]);
+    const checkMain = await exec([
+      "git",
+      "rev-parse",
+      "--verify",
+      "origin/main",
+    ]);
     if (checkMain.code !== 0) {
-      const checkMaster = await exec(["git", "rev-parse", "--verify", "origin/master"]);
+      const checkMaster = await exec([
+        "git",
+        "rev-parse",
+        "--verify",
+        "origin/master",
+      ]);
       if (checkMaster.code !== 0) {
-        const checkLocalMain = await exec(["git", "rev-parse", "--verify", "main"]);
+        const checkLocalMain = await exec([
+          "git",
+          "rev-parse",
+          "--verify",
+          "main",
+        ]);
         if (checkLocalMain.code !== 0) {
-          console.error("Error: Unable to find base branch (tried origin/main, origin/master, main)");
+          console.error(
+            "Error: Unable to find base branch (tried origin/main, origin/master, main)",
+          );
           Deno.exit(1);
         }
         baseBranch = "main";
@@ -89,7 +120,12 @@ async function main() {
   }
 
   // Check if there are commits to rewrite
-  const commits = await exec(["git", "log", `${baseBranch}..HEAD`, "--oneline"]);
+  const commits = await exec([
+    "git",
+    "log",
+    `${baseBranch}..HEAD`,
+    "--oneline",
+  ]);
   if (!commits.stdout) {
     console.log("No commits to rewrite (branch is up to date with base)");
     Deno.exit(0);
@@ -102,7 +138,8 @@ async function main() {
   console.log("\nThis will rewrite commit history. Continue? (y/N)");
   const buf = new Uint8Array(1024);
   const n = await Deno.stdin.read(buf);
-  const answer = new TextDecoder().decode(buf.subarray(0, n ?? 0)).trim().toLowerCase();
+  const answer = new TextDecoder().decode(buf.subarray(0, n ?? 0)).trim()
+    .toLowerCase();
 
   if (answer !== "y" && answer !== "yes") {
     console.log("Aborted");
@@ -110,15 +147,16 @@ async function main() {
   }
 
   // Rewrite commits
-  console.log("\nRewriting commits...");
-  const rebase = await exec([
+  const command = [
     "git",
     "rebase",
     "-i",
     baseBranch,
     "--exec",
     `git commit --amend --author="${author}" --no-edit`,
-  ]);
+  ];
+  console.log(`\nRewriting commits with \`${command.join(" ")}\`...`);
+  const rebase = await exec(command);
 
   if (rebase.code !== 0) {
     console.error("Error during rebase:");
