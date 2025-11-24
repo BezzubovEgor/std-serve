@@ -155,7 +155,7 @@ async function main() {
     "-i",
     baseBranch,
     "--exec",
-    `"git commit --amend --author="${author}" --no-edit"`,
+    `git commit --amend --author="${author}" --no-edit`,
   ];
   console.log(`\nRewriting commits with \`${command.join(" ")}\`...`);
   // Set GIT_SEQUENCE_EDITOR to ':' (no-op) to skip interactive editor
