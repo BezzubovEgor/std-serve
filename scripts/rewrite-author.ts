@@ -153,7 +153,7 @@ async function main() {
     "-i",
     baseBranch,
     "--exec",
-    `git commit --amend --author="${author}" --no-edit`,
+    `"git commit --amend --author="${author}" --no-edit"`,
   ];
   console.log(`\nRewriting commits with \`${command.join(" ")}\`...`);
   const rebase = await exec(command);
