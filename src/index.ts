@@ -1,2 +1,2 @@
 export { stdServe } from "./bus.ts";
-export { on } from "./handlers.ts";
+export { App } from "./app.ts";
