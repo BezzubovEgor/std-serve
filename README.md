@@ -8,10 +8,16 @@
 ```
 # @ybezz/std-serve
 
-A Deno library for building powerful command-line applications that communicate over standard input and output using a request-response model. It is also fully compatible and suitable for Node.js projects, thanks to its build process.
+`@ybezz/std-serve` is a powerful and lightweight library for building modern, interactive command-line applications. It leverages a request-response model over standard I/O, making it easy to create composable and maintainable CLI tools. Whether you're working in a Deno or Node.js environment, this library provides a seamless experience for developing sophisticated CLI applications.
 
-| [![codecov](https://codecov.io/github/BezzubovEgor/std-serve/graph/badge.svg?token=5M5x9FFgTm)](https://codecov.io/github/BezzubovEgor/std-serve) | [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) | [![jsr-version](https://jsr.io/badges/@ybezz/std-serve)](https://jsr.io/@ybezz/std-serve) | [![npm-version](https://img.shields.io/npm/v/@ybezz/std-serve)](https://www.npmjs.com/package/@ybezz/std-serve) |
-|---|---|---|---|
+[![CI](https://github.com/BezzubovEgor/std-serve/actions/workflows/ci.yml/badge.svg)](https://github.com/BezzubovEgor/std-serve/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/github/BezzubovEgor/std-serve/graph/badge.svg?token=5M5x9FFgTm)](https://codecov.io/github/BezzubovEgor/std-serve)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![jsr-version](https://jsr.io/badges/@ybezz/std-serve)](https://jsr.io/@ybezz/std-serve)
+[![npm-version](https://img.shields.io/npm/v/@ybezz/std-serve)](https://www.npmjs.com/package/@ybezz/std-serve)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@ybezz/std-serve)](https://bundlephobia.com/result?p=@ybezz/std-serve)
+[![Open in Gitpod](https://img.shields.io/badge/Open%20in-Gitpod-blue?logo=gitpod)](https://gitpod.io/#https://github.com/BezzubovEgor/std-serve)
+[![Open in VS Code](https://img.shields.io/badge/Open%20in-VS%20Code-blue?logo=visualstudiocode)](https://open.vscode.dev/BezzubovEgor/std-serve)
 
 ## Overview
 
@@ -26,39 +32,44 @@ A Deno library for building powerful command-line applications that communicate 
 *   **JSON Support:** Helpers for working with JSON-based protocols.
 *   **Schema Validation:** Integrate with `Zod` for robust, type-safe message validation.
 
-## Installation
 
-### Deno
+## Getting Started
 
-The library is available on JSR. You can import it directly in your Deno projects:
+### Installation
+
+`@ybezz/std-serve` is designed for both Deno and Node.js environments.
+
+#### Deno
+
+The library is available on JSR and can be imported directly into your Deno projects:
 
 ```typescript
 import { stdServe, on, json, is } from "jsr:@ybezz/std-serve";
-// or specific modules
+// You can also import specific modules for a more modular approach:
 // import { json } from "jsr:@ybezz/std-serve/json";
 // import { on } from "jsr:@ybezz/std-serve/handlers";
 ```
 
-### Node.js
+#### Node.js
 
-The library is published to NPM, making it readily available for Node.js projects.
+For Node.js projects, the library is available on NPM:
 
 ```bash
 npm install @ybezz/std-serve
 ```
 
-Then, you can import it like any other Node.js module:
+Once installed, you can import it like any other Node.js module:
 
 ```typescript
 import { stdServe, on, json, is } from "@ybezz/std-serve";
-// or specific modules
+// For a modular approach, you can also import specific modules:
 // import { json } from "@ybezz/std-serve/json";
 // import { on } from "@ybezz/std-serve/handlers";
 ```
 
-## Usage Example
+### Quick Start
 
-Here's a quick example demonstrating an "echo" server and a "sum" calculator using Zod for schema validation:
+Here's a quick example of an "echo" server and a "sum" calculator using Zod for schema validation. This demonstrates how to set up a simple CLI application that responds to structured input.
 
 ```typescript
 import { z } from "zod";
