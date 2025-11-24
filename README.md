@@ -10,14 +10,8 @@
 
 `@ybezz/std-serve` is a powerful and lightweight library for building modern, interactive command-line applications. It leverages a request-response model over standard I/O, making it easy to create composable and maintainable CLI tools. Whether you're working in a Deno or Node.js environment, this library provides a seamless experience for developing sophisticated CLI applications.
 
-[![CI](https://github.com/BezzubovEgor/std-serve/actions/workflows/ci.yml/badge.svg)](https://github.com/BezzubovEgor/std-serve/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/github/BezzubovEgor/std-serve/graph/badge.svg?token=5M5x9FFgTm)](https://codecov.io/github/BezzubovEgor/std-serve)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![jsr-version](https://jsr.io/badges/@ybezz/std-serve)](https://jsr.io/@ybezz/std-serve)
-[![npm-version](https://img.shields.io/npm/v/@ybezz/std-serve)](https://www.npmjs.com/package/@ybezz/std-serve)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@ybezz/std-serve)](https://bundlephobia.com/result?p=@ybezz/std-serve)
-[![Open in Gitpod](https://img.shields.io/badge/Open%20in-Gitpod-blue?logo=gitpod)](https://gitpod.io/#https://github.com/BezzubovEgor/std-serve)
-[![Open in VS Code](https://img.shields.io/badge/Open%20in-VS%20Code-blue?logo=visualstudiocode)](https://open.vscode.dev/BezzubovEgor/std-serve)
+| [![codecov](https://codecov.io/github/BezzubovEgor/std-serve/graph/badge.svg?token=5M5x9FFgTm)](https://codecov.io/github/BezzubovEgor/std-serve) | [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) | [![jsr-version](https://jsr.io/badges/@ybezz/std-serve)](https://jsr.io/@ybezz/std-serve) | [![npm-version](https://img.shields.io/npm/v/@ybezz/std-serve)](https://www.npmjs.com/package/@ybezz/std-serve) |
+|---|---|---|---|
 
 ## Overview
 
