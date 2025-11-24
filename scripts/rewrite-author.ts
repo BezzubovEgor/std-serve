@@ -11,11 +11,13 @@
 
 async function exec(
   cmd: string[],
+  env?: Record<string, string>,
 ): Promise<{ stdout: string; stderr: string; code: number }> {
   const command = new Deno.Command(cmd[0], {
     args: cmd.slice(1),
     stdout: "piped",
     stderr: "piped",
+    env: env ? { ...Deno.env.toObject(), ...env } : undefined,
   });
 
   const { stdout, stderr, code } = await command.output();
@@ -153,10 +155,11 @@ async function main() {
     "-i",
     baseBranch,
     "--exec",
-    `"git commit --amend --author="${author}" --no-edit"`,
+    `git commit --amend --author="${author}" --no-edit`,
   ];
   console.log(`\nRewriting commits with \`${command.join(" ")}\`...`);
-  const rebase = await exec(command);
+  // Set GIT_SEQUENCE_EDITOR to ':' (no-op) to skip interactive editor
+  const rebase = await exec(command, { GIT_SEQUENCE_EDITOR: ":" });
 
   if (rebase.code !== 0) {
     console.error("Error during rebase:");
